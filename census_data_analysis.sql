@@ -44,12 +44,12 @@ order by avg_literacy_ratio desc ;
 select state,avg(growth)*100 avg_growth from project..data1 group by state order by avg_growth desc limit 3;
 
 
---bottom 3 state showing lowest sex ratio
+-- top 3 state showing lowest sex ratio
 
 select top 3 state,round(avg(sex_ratio),0) avg_sex_ratio from project..data1 group by state order by avg_sex_ratio asc;
 
 
--- top and bottom 3 states in literacy state
+-- top and bottom 3 states in literacy rate
 
 drop table if exists #topstates;
 create table #topstates
@@ -140,9 +140,9 @@ group by e.state)m) n) q inner join (
 select '1' as keyy,z.* from (
 select sum(area_km2) total_area from project..data2)z) r on q.keyy=r.keyy)g
 
---using window function
+-- using window function
 
---output top 3 districts from each state with highest literacy rate
+-- output top 3 districts from each state with highest literacy rate
 
 
 select a.* from
